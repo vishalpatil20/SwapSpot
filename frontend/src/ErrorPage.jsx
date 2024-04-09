@@ -5,13 +5,13 @@ export default function ErrorPage() {
   console.error(error);
 
   return (
-    <div id="error-page">
+    <div id="error-page" className="">
       <h1>Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
       <p>
         <i>{error.statusText || error.message}</i>
       </p>
-      <button className="bg-black text-white">
+      <button className="bg-[#004AAD] text-black">
         <Link to="/">Go back to Home</Link>
         </button>
     </div>

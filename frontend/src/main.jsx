@@ -9,7 +9,7 @@ import ErrorPage from "./ErrorPage";
 import './index.css'
 import Aboutme from './components/Aboutme.jsx';
 import Home from './components/Home.jsx';
-import Login from './components/Login.jsx';
+import LoginSignUpForm from './components/LoginSignUpForm.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/Login",
-        element: <Login/>,
+        element: <LoginSignUpForm/>,
         errorElement:<ErrorPage/>,
       },
     ]
