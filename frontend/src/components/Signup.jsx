@@ -72,7 +72,7 @@ function Signup({ setSuccessMessage, setErrorMessage }) {
       <div className="mb-6">
         <button
           type="submit"
-          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="w-full bg-[#004AAD] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
           Sign up
         </button>

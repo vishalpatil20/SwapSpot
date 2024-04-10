@@ -75,7 +75,7 @@ function Login({ setSuccessMessage, setErrorMessage }) {
       <div className="mb-6">
         <button
           type="submit"
-          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="w-full bg-[#004AAD] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
           Login
         </button>
@@ -84,7 +84,7 @@ function Login({ setSuccessMessage, setErrorMessage }) {
         <button
           type="button"
           onClick={handleUseTestId}
-          className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-gray-200 hover:bg-gray-300 text-[#004AAD] font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline"
         >
           Use Test ID
         </button>
