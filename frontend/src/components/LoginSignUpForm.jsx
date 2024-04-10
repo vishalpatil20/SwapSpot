@@ -22,20 +22,20 @@ function LoginSignUpForm() {
           <div className="flex justify-center mb-4">
             <button
               onClick={() => handleTabChange("login")}
-              className={`mr-2 py-2 px-4 bg-gray-300 text-gray-900 rounded-tl rounded-bl transition-colors duration-300 ease-in-out ${
+              className={`mr-2 py-2 px-4 bg-[#004AAD] text-gray-900 rounded-tl rounded-bl transition-colors duration-300 ease-in-out ${
                 activeTab === "login"
                   ? "bg-[#004AAD] text-white"
-                  : "hover:bg-blue-200 hover:text-blue-800"
+                  : "hover:bg-black hover:text-blue-800"
               }`}
             >
               Login
             </button>
             <button
               onClick={() => handleTabChange("signup")}
-              className={`py-2 px-4 bg-gray-300 text-gray-900 rounded-tr rounded-br transition-colors duration-300 ease-in-out ${
+              className={`py-2 px-4 bg-[#004AAD] text-gray-900 rounded-tr rounded-br transition-colors duration-300 ease-in-out ${
                 activeTab === "signup"
                   ? "bg-[#004AAD] text-white"
-                  : "hover:bg-blue-200 hover:text-blue-800"
+                  : "hover:bg-black hover:text-blue-800"
               }`}
             >
               Signup

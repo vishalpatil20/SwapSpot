@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { BiSolidShow } from "react-icons/bi";
+
 
 function Login({ setSuccessMessage, setErrorMessage }) {
   const [loginEmail, setLoginEmail] = useState("");
@@ -66,9 +68,9 @@ function Login({ setSuccessMessage, setErrorMessage }) {
           />
           <span
             onClick={handleToggleTestId}
-            className="absolute top-0 right-0 m-2 cursor-pointer text-gray-400"
+            className="absolute top-0 right-0 m-4 cursor-pointer text-[#004AAD] font-bold"
           >
-            &#128065;
+            <BiSolidShow />
           </span>
         </div>
       </div>

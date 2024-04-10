@@ -67,6 +67,7 @@ function Signup({ setSuccessMessage, setErrorMessage }) {
           required
           className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
         />
+        
       </div>
 
       <div className="mb-6">

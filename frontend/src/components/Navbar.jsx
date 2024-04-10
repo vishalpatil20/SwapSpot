@@ -7,7 +7,7 @@ const Navbar = () => {
     <nav className="bg-black p-2 md:p-1 flex justify-center items-center">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-[#004AAD] font-bold text-xl">
-        <Link to="/Home">
+        <Link to="/">
         <img src={logo} alt="SwapSpot" className="h-13 w-14" />
         </Link>
         </div>
