@@ -3,9 +3,17 @@ SwapSpot
 
 TODO'S
 Create the sessions system 
+
+
 Work on the home and service(tinder swipe thing) part
+
+
 Integrate the Mail system checkout SMTP
+
+
 check out the chat and call feature for for chatoing use webRTC and scoketio for it
+
+
 check for the olx api and create yopu own api for the infinte scroll
 
 
