@@ -10,6 +10,8 @@ import './index.css'
 import Aboutme from './components/Aboutme.jsx';
 import Home from './components/Home.jsx';
 import LoginSignUpForm from './components/LoginSignUpForm.jsx';
+import PayButton from './components/PayButton.jsx'
+import PLay from './components/PLay.jsx'
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,11 @@ const router = createBrowserRouter([
       {
         path: "/Login",
         element: <LoginSignUpForm/>,
+        errorElement:<ErrorPage/>,
+      },
+      {
+        path: "/PLAY",
+        element: <PLay/>,
         errorElement:<ErrorPage/>,
       },
     ]

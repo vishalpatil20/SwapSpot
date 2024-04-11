@@ -20,3 +20,13 @@ model User {
   password String
 }
 
+model Payment {
+  id        Int      @id @default(autoincrement())
+  amount    Int
+  currency  String
+  receipt   String
+  status    String
+  createdAt DateTime @default(now())
+}
+
+
