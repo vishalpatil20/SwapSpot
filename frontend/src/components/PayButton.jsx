@@ -25,7 +25,7 @@ const PayButton = () => {
 
     return (
         <div>
-            <button onClick={handlePayment}>Pay Now</button>
+            <button onClick={handlePayment} className='text-[#004AAD] bg-zinc-400'>Pay Now</button>
         </div>
     );
 };

@@ -48,12 +48,12 @@ function LoginSignUpForm() {
         </div>
       </div>
       {successMessage && (
-        <div className="success-message text-green-600 mt-4">
+        <div className="success-message text-green-600 mt-4 rounded-tr">
           {successMessage}
         </div>
       )}
       {errorMessage && (
-        <div className="error-message text-red-600 mt-4">{errorMessage}</div>
+        <div className="error-message text-red-600 mt-4 rounded-tr">{errorMessage}</div>
       )}
     </div>
   );
