@@ -11,7 +11,7 @@ const Navbar = () => {
         <img src={logo} alt="SwapSpot" className="h-13 w-14" />
         </Link>
         </div>
-        <div className="flex space-x-7 font-mono">
+        <div className="flex space-x-5">
         <Link to="/" className="text-[#004AAD] hover:text-white">Home</Link>
         <Link to="/Aboutme" className="text-[#004AAD] hover:text-white">About</Link>
         <Link to="/services" className="text-[#004AAD] hover:text-white">Services</Link>

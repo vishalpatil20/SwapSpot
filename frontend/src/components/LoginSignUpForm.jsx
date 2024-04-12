@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Login from "./Login";
 import Signup from "./Signup";
+import Intro from './Intro'
+
 
 function LoginSignUpForm() {
   const [activeTab, setActiveTab] = useState("login");
@@ -55,6 +57,7 @@ function LoginSignUpForm() {
       {errorMessage && (
         <div className="error-message text-red-600 mt-4 rounded-tr">{errorMessage}</div>
       )}
+      <Intro/>
     </div>
   );
 }

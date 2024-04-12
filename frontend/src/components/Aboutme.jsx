@@ -1,8 +1,12 @@
 import React from 'react'
+import Swap from './Swap'
+
 
 const Aboutme = () => {
   return (
-    <div>This is about the the About me section</div>
+    <div>
+      <Swap/>
+    </div>
   )
 }
 
