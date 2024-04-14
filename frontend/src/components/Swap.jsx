@@ -71,7 +71,7 @@ function Swap() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-blue-100">
+    <div className="flex flex-col items-center justify-center h-screen bg-blue-400">
       <h1 className="text-2xl font-bold mb-4">React Tinder Card</h1>
       <div className="cardContainer w-90vw max-w-4xl h-96 flex items-center justify-center">
         {db.map((character, index) => (
