@@ -95,7 +95,7 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-[#004AAD]' : '', 'block px-4 py-2 text-sm text-white')}
+                            className={classNames(active ? 'bg-white' : '', 'block px-4 py-2 text-sm text-[#004AAD]')}
                           >
                             Your Profile
                           </a>
@@ -105,7 +105,7 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-[#004AAD]' : '', 'block px-4 py-2 text-sm text-white')}
+                            className={classNames(active ? 'bg-white' : '', 'block px-4 py-2 text-sm text-[#004AAD]')}
                           >
                             Settings
                           </a>
@@ -115,7 +115,7 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-red-500' : '', 'block px-4 py-2 text-sm text-white')}
+                            className={classNames(active ? 'bg-red-500' : '', 'block px-4 py-2 text-sm text-[#004AAD]')}
                           >
                             Sign out
                           </a>
