@@ -2,12 +2,12 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer class="bg-black text-gray-400 px-4 py-8">
+    <footer class="bg-black text-[#004AAD] px-4 py-8">
       <div class="flex flex-col justify-between gap-8 md:flex-row md:pt-3 sm:px-4 lg:px-12 lg:justify-start lg:gap-44">
         <div class="mb-4 md:mb-0">
-          <h1 class="text-3xl font-bold mt-4 md:mt-0">NOTES MANAGEMENT</h1>
+          <h1 class="text-3xl font-bold mt-4 md:mt-0">SwapSpot</h1>
           <p class="text-gray-400 mt-2">
-            A React app to manage your Notes.
+          MARKET PLACE FOR ALL EXCHANGES.
           </p>
         </div>
         <div class="flex flex-row flex-wrap gap-12 mt-2 md:mt-0 lg:gap-20">
@@ -20,18 +20,13 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/about" class="text-gray-400 hover:text-white">
+                <a href="/Aboutme" class="text-gray-400 hover:text-white">
                   About
                 </a>
               </li>
               <li>
                 <a href="/contact" class="text-gray-400 hover:text-white">
                   Contact
-                </a>
-              </li>
-              <li>
-                <a href="/contact" class="text-gray-400 hover:text-white">
-                  Privacy Policy
                 </a>
               </li>
             </ul>
@@ -68,11 +63,9 @@ const Footer = () => {
         </div>
       </div>
       <div class="text-center mt-8 mb-2 lg:mt-16">
-        <p class="text-gray-400 text-s">
-          GitHub : {' '}
-        <a href="https://github.com/vishalpatil20" className="hover:underline">
-             Vishal Patil{' '}
-        </a>
+        <p class="text-[#004AAD] text-s">
+          All rights reserved @2024
+
         </p>
       </div>
     </footer>
