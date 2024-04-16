@@ -2,8 +2,8 @@ import React from 'react'
 import Intro from './Intro'
 import Typewriter from 'typewriter-effect';
 import InfiniteScrollAnimation from './InfiniteScrollAnimation'
-import Swap from './Swap'
 import Footer from './Footer';
+import MarqueEffect from './MarqueEffect';
 
 const Home = () => {
   return (
@@ -15,13 +15,17 @@ const Home = () => {
             typewriter.typeString('SwapSpot')
             .pauseFor(2)
             .start();
+            
           }}
-        /></span></span>
+        />
+        </span>
+      </span>
       </div>
+      
       <Intro/>
       <InfiniteScrollAnimation/>
+      <MarqueEffect/>
       <Footer/>
-      {/* <Swap/> */}
     </div>
   )
 }
