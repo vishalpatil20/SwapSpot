@@ -3,6 +3,7 @@ import Intro from './Intro'
 import Typewriter from 'typewriter-effect';
 import InfiniteScrollAnimation from './InfiniteScrollAnimation'
 import Swap from './Swap'
+import Footer from './Footer';
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       </div>
       <Intro/>
       <InfiniteScrollAnimation/>
+      <Footer/>
       {/* <Swap/> */}
     </div>
   )
