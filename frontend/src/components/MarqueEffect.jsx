@@ -1,12 +1,16 @@
-import Marquee from "react-marquee-slider";
+import React from "react";
+import Marquee from "react-fast-marquee";
+import { CiBadgeDollar } from "react-icons/ci";
 
-export default function MarqueEffect() {
-    return (
-      <Marquee velocity={25}>
-        <div>Your content goes here</div>
-        <div>Your content goes here</div>
-        <div>Your content goes here</div>
-        <div>Your content goes here</div>
-      </Marquee>
-    );
-  }
+
+const MarqueeEffect = () => (
+  <Marquee autoFill pauseOnHover direction="right">
+    <div className="text-[#004AAD] text-5xl">
+    <CiBadgeDollar />
+    </div>
+  </Marquee>
+  
+);
+
+
+export default MarqueeEffect;
