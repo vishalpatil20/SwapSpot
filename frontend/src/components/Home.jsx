@@ -23,8 +23,8 @@ const Home = () => {
       </div>
       
       <Intro/>
-      <InfiniteScrollAnimation/>
       <MarqueEffect/>
+      <InfiniteScrollAnimation/>
       <Footer/>
     </div>
   )

@@ -1,12 +1,13 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
-import { CiBadgeDollar } from "react-icons/ci";
+import logo from '../assets/dark_logo.png'
+import logo1 from '../assets/light_logo.png'
 
 
 const MarqueeEffect = () => (
-  <Marquee autoFill pauseOnHover direction="right">
-    <div className="text-[#004AAD] text-5xl">
-    <CiBadgeDollar />
+  <Marquee className="text-[#004AAD] text-xl"autoFill pauseOnHover direction="right" gradient gradientWidth={300} gradientColor="#000000" speed={120}>
+    <div >
+      <img src={logo} alt=""  className="h-20 w-20"/>
     </div>
   </Marquee>
   
