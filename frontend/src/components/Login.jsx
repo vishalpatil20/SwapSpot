@@ -17,6 +17,9 @@ function Login({ setSuccessMessage, setErrorMessage }) {
         email: loginEmail,
         password: loginPassword
       });
+      const { token } = response.data;
+      // Store token in local storage
+      localStorage.setItem('token', token);
       // Handle successful login
       setSuccessMessage("Login Successful");
       setErrorMessage(""); // Reset error message if login succeeds
