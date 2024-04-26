@@ -18,6 +18,7 @@ const Notification = () => {
       setIsOpen(!isOpen);
     } catch (error) {
       console.error('Error fetching notifications:', error);
+      setError('Failed to fetch notifications. Please try again later.');
     }
   };
 

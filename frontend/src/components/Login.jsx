@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { BiSolidShow } from "react-icons/bi";
 
 
@@ -9,6 +10,8 @@ function Login({ setSuccessMessage, setErrorMessage }) {
   const [showTestId, setShowTestId] = useState(false);
   const testEmail = "testuser@gmail.com";
   const testPassword = "testpassword";
+  const navigate = useNavigate();
+
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +24,7 @@ function Login({ setSuccessMessage, setErrorMessage }) {
       // Store token in local storage
       localStorage.setItem('token', token);
       // Handle successful login
+      navigate(`/`);
       setSuccessMessage("Login Successful");
       setErrorMessage(""); // Reset error message if login succeeds
       console.log("Login Successful:", response.data);
@@ -52,7 +56,7 @@ function Login({ setSuccessMessage, setErrorMessage }) {
           value={loginEmail}
           onChange={(e) => setLoginEmail(e.target.value)}
           required
-          className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+          className="mt-1 p-2 w-full rounded-md border border-gray-400 focus:outline-none focus:border-blue-500"
         />
       </div>
       <div className="mb-4">
@@ -67,7 +71,7 @@ function Login({ setSuccessMessage, setErrorMessage }) {
             value={loginPassword}
             onChange={(e) => setLoginPassword(e.target.value)}
             required
-            className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+            className="mt-1 p-2 w-full rounded-md border border-gray-400 focus:outline-none focus:border-blue-500"
           />
           <span
             onClick={handleToggleTestId}

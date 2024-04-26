@@ -5,6 +5,7 @@ import logo from '../assets/dark_logo.png';
 import { FaRegCircleUser } from "react-icons/fa6";
 import SignoutButton from './chatFeature/SignoutButton';
 import Notifications from './Notifications'
+import LoginSignUpForm from './LoginSignUpForm';
 
 
 
@@ -13,7 +14,7 @@ const navigation = [
   { name: 'About', href: '/Aboutme', current: false },
   { name: 'Services', href: '/services', current: false },
   { name: 'Play', href: '/PLAY', current: false },
-  { name: 'Login/Sign-up', href: '/Login', current: false },
+  // { name: 'Login/Sign-up', href: '/Login', current: false },
 ];
 
 function classNames(...classes) {
@@ -107,6 +108,16 @@ export default function Example() {
                             className={classNames(active ? 'bg-white' : '', 'block px-4 py-2 text-sm text-[#004AAD]')}
                           >
                             Settings
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/Login"
+                            className={classNames(active ? 'bg-white' : '', 'block px-4 py-2 text-sm text-[#004AAD]')}
+                          >
+                            Login/SignUp
                           </a>
                         )}
                       </Menu.Item>

@@ -13,7 +13,7 @@ function LoginSignUpForm() {
   };
 
   return (
-    <div className="container mx-auto mt-8 px-4">
+    <div className="container mx-auto mt-8 px-4 mb-8">
       <div className="flex justify-center">
         <div className="w-full max-w-md">
           <div>
@@ -42,19 +42,19 @@ function LoginSignUpForm() {
               Signup
             </button>
           </div>
-          <div className="bg-white p-6 rounded border border-gray-300">
+          <div className="bg-white p-6 rounded border border-gray-700">
             {activeTab === "login" && <Login setSuccessMessage={setSuccessMessage} setErrorMessage={setErrorMessage} />}
             {activeTab === "signup" && <Signup setSuccessMessage={setSuccessMessage} setErrorMessage={setErrorMessage} />}
           </div>
         </div>
       </div>
       {successMessage && (
-        <div className="success-message text-green-600 mt-4 rounded-tr">
+        <div className="success-message text-green-600 rounded-tr">
           {successMessage}
         </div>
       )}
       {errorMessage && (
-        <div className="error-message text-red-600 mt-4 rounded-tr">{errorMessage}</div>
+        <div className="error-message text-red-600  rounded-tr">{errorMessage}</div>
       )}
       
     </div>

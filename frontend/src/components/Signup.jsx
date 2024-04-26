@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 function Signup({ setSuccessMessage, setErrorMessage }) {
     const [signupName, setSignupName] = useState("");
     const [signupEmail, setSignupEmail] = useState("");
     const [signupPassword, setSignupPassword] = useState("");
+    const navigate = useNavigate();
+
   
     const handleSignupSubmit = async (e) => {
       e.preventDefault();
@@ -17,6 +21,7 @@ function Signup({ setSuccessMessage, setErrorMessage }) {
         setSuccessMessage(response.data.message);
         setErrorMessage("");
         console.log("Signup Successful");
+      navigate(`/`);
       } catch (error) {
         setErrorMessage("Signup Failed. Please try again.");
         setSuccessMessage("");
