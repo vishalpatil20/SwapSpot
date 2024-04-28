@@ -5,10 +5,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
     theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'prim': '#004AAD',
+        'prim-bg': '#000000',
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/forms'),
+
   ],
   
 }

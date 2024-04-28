@@ -12,6 +12,7 @@ import Home from './components/Home.jsx';
 import LoginSignUpForm from './components/LoginSignUpForm.jsx';
 import PayButton from './components/PayButton.jsx'
 import PLay from './components/PLay.jsx'
+import ProductsPage from './components/Products/ProductsPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,11 @@ const router = createBrowserRouter([
       {
         path: "/PLAY",
         element: <PLay/>,
+        errorElement:<ErrorPage/>,
+      },
+      {
+        path: "/products",
+        element: <ProductsPage/>,
         errorElement:<ErrorPage/>,
       },
     ]

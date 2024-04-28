@@ -6,13 +6,14 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import SignoutButton from './chatFeature/SignoutButton';
 import Notifications from './Notifications'
 import LoginSignUpForm from './LoginSignUpForm';
+import Products from './Products/ProductsPage'
 
 
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
-  { name: 'About', href: '/Aboutme', current: false },
-  { name: 'Services', href: '/services', current: false },
+  { name: 'About us', href: '/Aboutme', current: false },
+  { name: 'SwapUp', href: '/products', current: false },
   { name: 'Play', href: '/PLAY', current: false },
   // { name: 'Login/Sign-up', href: '/Login', current: false },
 ];

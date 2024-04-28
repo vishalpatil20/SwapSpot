@@ -5,6 +5,7 @@ import InfiniteScrollAnimation from './InfiniteScrollAnimation'
 import Footer from './Footer';
 import MarqueEffect from './MarqueEffect';
 import { useLocation } from 'react-router-dom';
+import Aboutme from './Aboutme';
 
 
 const Home = () => {
@@ -36,6 +37,7 @@ const Home = () => {
       <Intro/>
       <MarqueEffect/>
       <InfiniteScrollAnimation/>
+      <Aboutme/>
       <Footer/>
     </div>
   )
