@@ -6,6 +6,7 @@ import Footer from './Footer';
 import MarqueEffect from './MarqueEffect';
 import { useLocation } from 'react-router-dom';
 import Aboutme from './Aboutme';
+import Banner from '../components/Banner'
 
 
 const Home = () => {
@@ -33,11 +34,11 @@ const Home = () => {
         </span>
       </span>
       </div>
-      
+      <Banner/>
       <Intro/>
-      <MarqueEffect/>
-      <InfiniteScrollAnimation/>
+      {/* <MarqueEffect/> */}
       <Aboutme/>
+      <InfiniteScrollAnimation/>
       <Footer/>
     </div>
   )

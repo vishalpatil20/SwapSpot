@@ -1,12 +1,11 @@
 import React, { useState, useMemo, useRef } from 'react';
 import TinderCard from 'react-tinder-card';
-import RichardImage from '../assets/dark_logo.png';
 
 
 const db = [
   {
     name: 'Richard Hendricks',
-    url: RichardImage,
+    // url: RichardImage,
   },
   {
     name: 'Erlich Bachman',
