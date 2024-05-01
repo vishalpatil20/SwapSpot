@@ -47,7 +47,7 @@ export default function Example() {
            Join  us on SwapCall
         </p>
         <a
-          href="#"
+          href="/Swapcall"
           className="flex-none rounded-full bg-black px-3.5 py-1 text-xs font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
         >
           Register now <span aria-hidden="true">&rarr;</span>

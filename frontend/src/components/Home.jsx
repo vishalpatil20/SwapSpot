@@ -7,6 +7,7 @@ import MarqueEffect from './MarqueEffect';
 import { useLocation } from 'react-router-dom';
 import Aboutme from './Aboutme';
 import Banner from '../components/Banner'
+import SwappCallPricing from './SwapCall/SwapCallPricing';
 
 
 const Home = () => {
@@ -39,6 +40,7 @@ const Home = () => {
       {/* <MarqueEffect/> */}
       <Aboutme/>
       <InfiniteScrollAnimation/>
+      <SwappCallPricing/>
       <Footer/>
     </div>
   )

@@ -13,6 +13,7 @@ import LoginSignUpForm from './components/LoginSignUpForm.jsx';
 import PayButton from './components/PayButton.jsx'
 import PLay from './components/PLay.jsx'
 import ProductsPage from './components/Products/ProductsPage.jsx';
+import SwapCallRegister from './components/SwapCall/SwapCallRegister.jsx';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,11 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <ProductsPage/>,
+        errorElement:<ErrorPage/>,
+      },
+      {
+        path: "/Swapcall",
+        element: <SwapCallRegister/>,
         errorElement:<ErrorPage/>,
       },
     ]

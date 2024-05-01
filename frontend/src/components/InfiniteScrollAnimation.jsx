@@ -57,28 +57,28 @@ export default InfiniteScrollAnimation;
 
 const cards = [
   {
-    url: "/assets/dark_logo.png",
-    title: "SwapSpot",
+    url: "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
+    title: "Buy",
     id: 1,
   },
   {
-    url: "/imgs/abstract/2.jpg",
-    title: "Title 2",
+    url: "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg",
+    title: "Sale",
     id: 2,
   },
   {
-    url: "/imgs/abstract/3.jpg",
-    title: "Title 3",
+    url: "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg",
+    title: "Rent",
     id: 3,
   },
   {
-    url: "/imgs/abstract/4.jpg",
-    title: "Title 4",
+    url: "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg",
+    title: "Talk",
     id: 4,
   },
   {
-    url: "/imgs/abstract/5.jpg",
-    title: "Title 5",
+    url: "https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg",
+    title: "Offers",
     id: 5,
   },
 ];
