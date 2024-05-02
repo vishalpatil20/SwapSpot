@@ -17,6 +17,12 @@ export default function SwappCallPricing() {
           </h2>
           <p className="mt-6 text-xl font-semibold leading-8 text-prim">
           Introducing Swapcall: a game-changing feature allowing customers to connect via video calls to explore products for buying or selling.
+          <a
+                  href="/SwapVideocalling"
+                  className="mt-10 block w-full rounded-md bg-prim px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Use it for Free Now (Limited time only)
+                </a>
           </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
