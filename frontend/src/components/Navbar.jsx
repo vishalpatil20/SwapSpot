@@ -4,18 +4,19 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import logo from '../assets/dark_logo.png';
 import { FaRegCircleUser } from "react-icons/fa6";
 import SignoutButton from './chatFeature/SignoutButton';
-import Notifications from './Notifications'
-import LoginSignUpForm from './LoginSignUpForm';
+import Notifications from './Baasic_utils/Notifications'
+import LoginSignUpForm from './Login/LoginSignUpForm';
 import Products from './Products/ProductsPage'
-
+import Action_menu from './Baasic_utils/Action_menu';
 
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'About us', href: '/Aboutme', current: false },
-  { name: 'SwapUp', href: '/products', current: false },
+  { name: 'SwapProducts', href: '/products', current: false },
   { name: 'Play', href: '/PLAY', current: false },
-  // { name: 'Login/Sign-up', href: '/Login', current: false },
+  
+  // { name: 'Login/Sign-up', href: {<Action_menu/>}, current: false },
 ];
 
 function classNames(...classes) {
@@ -62,6 +63,9 @@ export default function Example() {
                         {item.name}
                       </a>
                     ))}
+                    <button>
+                      <Action_menu/>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -95,7 +99,7 @@ export default function Example() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/profile"
                             className={classNames(active ? 'bg-blue-100' : '', 'block px-4 py-2 text-sm text-[#004AAD]')}
                           >
                             Your Profile

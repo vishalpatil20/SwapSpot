@@ -1,5 +1,5 @@
 import React from 'react'
-import PayButton from './PayButton'
+import PayButton from './Baasic_utils/PayButton'
 import Swap from './SwipeFeature/Swap'
 import ChatApp from '../components/chatFeature/ChatApp'
 const PLay = () => {

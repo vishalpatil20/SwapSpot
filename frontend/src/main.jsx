@@ -9,12 +9,14 @@ import ErrorPage from "./ErrorPage";
 import './index.css'
 import Aboutme from './components/Aboutme.jsx';
 import Home from './components/Home.jsx';
-import LoginSignUpForm from './components/LoginSignUpForm.jsx';
-import PayButton from './components/PayButton.jsx'
+import LoginSignUpForm from './components/Login/LoginSignUpForm.jsx';
+import PayButton from './components/Baasic_utils/PayButton.jsx'
 import PLay from './components/PLay.jsx'
 import ProductsPage from './components/Products/ProductsPage.jsx';
 import SwapCallRegister from './components/SwapCall/SwapCallRegister.jsx';
 import SwapCallFeature from './components/SwapCall/SwapCallFeature.jsx';
+import Profile from './components/Profile/Profile.jsx';
+import Swap from './components/SwipeFeature/Swap.jsx';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +59,17 @@ const router = createBrowserRouter([
         element: <SwapCallFeature/>,
         errorElement:<ErrorPage/>,
       },
+      {
+        path: "/profile",
+        element: <Profile/>,
+        errorElement:<ErrorPage/>,
+      },
+      {
+        path: "/SwapSwipe",
+        element: <Swap/>,
+        errorElement:<ErrorPage/>,
+      },
+      
     ]
   },
 
