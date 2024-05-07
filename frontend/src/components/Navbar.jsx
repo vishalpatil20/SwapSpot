@@ -44,7 +44,7 @@ export default function Example() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                 
-                    <img src={logo} alt="SwapSpot" className="h-12 w-12" />
+                    <img src={logo} href="/home" alt="SwapSpot" className="h-12 w-12" />
                 
                 </div>
                 <div className="hidden sm:ml-7 sm:block">
@@ -91,12 +91,12 @@ export default function Example() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md text-[#004AAD] py-1 shadow-lg ring-1 ring-white ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="bg-white absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md text-[#004AAD] py-1 shadow-lg ring-1 ring-white ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-white' : '', 'block px-4 py-2 text-sm text-[#004AAD]')}
+                            className={classNames(active ? 'bg-blue-100' : '', 'block px-4 py-2 text-sm text-[#004AAD]')}
                           >
                             Your Profile
                           </a>
@@ -106,7 +106,7 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-white' : '', 'block px-4 py-2 text-sm text-[#004AAD]')}
+                            className={classNames(active ? 'bg-blue-100' : '', 'block px-4 py-2 text-sm text-[#004AAD]')}
                           >
                             Settings
                           </a>
@@ -116,7 +116,7 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="/Login"
-                            className={classNames(active ? 'bg-white' : '', 'block px-4 py-2 text-sm text-[#004AAD]')}
+                            className={classNames(active ? 'bg-blue-100' : '', 'block px-4 py-2 text-sm text-[#004AAD]')}
                           >
                             Login/SignUp
                           </a>

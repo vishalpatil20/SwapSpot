@@ -69,7 +69,7 @@ export default function SwappCallPricing() {
                   </span>
                 </p>
                 <a
-                  href="#"
+                  href="/pay"
                   className="mt-10 block w-full rounded-md bg-black px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Get access
