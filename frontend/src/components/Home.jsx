@@ -3,11 +3,11 @@ import Intro from './Intro'
 import Typewriter from 'typewriter-effect';
 import InfiniteScrollAnimation from './InfiniteScrollAnimation'
 import Footer from './Baasic_utils/Footer';
-import MarqueEffect from './MarqueEffect';
 import { useLocation } from 'react-router-dom';
 import Aboutme from './Aboutme';
 import Banner from './Baasic_utils/Banner'
 import SwappCallPricing from './SwapCall/SwapCallPricing';
+// import MarqueeEffect from './Baasic_utils/MarqueEffect';
 
 
 const Home = () => {

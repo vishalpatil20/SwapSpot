@@ -17,7 +17,7 @@ function LoginSignUpForm() {
       <div className="flex justify-center">
         <div className="w-full max-w-md">
           <div>
-            <span className="bg-[#004AAD] font-mono text-5xl">Welcome To <span className="text-white">SwapSpot</span></span> 
+            <span className=" font-mono text-5xl">Welcome To <span className="text-prim">SwapSpot</span></span> 
             <h2 className="py-2">If dont want to register use <span className="font-bold">TestId</span> in login &#x1F609;</h2>
           </div>
           <div className="flex justify-center mb-4">

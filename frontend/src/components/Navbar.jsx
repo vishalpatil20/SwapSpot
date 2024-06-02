@@ -40,12 +40,14 @@ export default function Example() {
                   ) : (
                     <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
                   )}
+                  
                 </Disclosure.Button>
+                <Action_menu/>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                 
-                    <img src={logo} href="/home" alt="SwapSpot" className="h-12 w-12" />
+                    <img src={logo} href="/" alt="SwapSpot" className="h-12 w-12" />
                 
                 </div>
                 <div className="hidden sm:ml-7 sm:block">
