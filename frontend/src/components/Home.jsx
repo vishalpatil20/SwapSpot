@@ -37,7 +37,7 @@ const Home = () => {
       </div>
       <Banner/>
       <Intro/>
-      {/* <MarqueEffect/> */}
+      {/* <MarqueeEffect/> */}
       <Aboutme/>
       <InfiniteScrollAnimation/>
       <SwappCallPricing/>

@@ -1,6 +1,8 @@
 import React from "react";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer class="bg-black text-[#004AAD] px-4 py-8">
       <div class="flex flex-col justify-between gap-8 md:flex-row md:pt-3 sm:px-4 lg:px-12 lg:justify-start lg:gap-44">
@@ -64,7 +66,7 @@ const Footer = () => {
       </div>
       <div class="text-center mt-8 mb-2 lg:mt-16">
         <p class="text-[#004AAD] text-s">
-          All rights reserved @2024
+          All rights reserved @ {currentYear}
 
         </p>
       </div>

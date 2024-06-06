@@ -6,6 +6,9 @@ export default {
   ],
     theme: {
     extend: {
+      fontFamily: {
+        
+      },
       colors: {
         'prim': '#004AAD',
         'prim-bg': '#000000',

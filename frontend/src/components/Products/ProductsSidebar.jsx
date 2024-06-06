@@ -188,7 +188,7 @@ export default function ProductsSidebar() {
               {/* Filters */}
               <form className="hidden lg:block">
                 <h3 className="sr-only">Categories</h3>
-                <ul role="list" className="space-y-4 border-b border-gray-700 pb-6 text-md font-medium text-prim">
+                <ul role="list" className="space-y-4 border-b border-gray-700 pb-6 text-md font-medium text-prim ">
                   {subCategories.map((category) => (
                     <li key={category.name}>
                       <a href={category.href}>{category.name}</a>
@@ -201,8 +201,8 @@ export default function ProductsSidebar() {
                     {({ open }) => (
                       <>
                         <h3 className="-my-3 flow-root">
-                          <Disclosure.Button className="flex w-full items-center justify-between bg-prim-bg py-3 text-sm text-prim hover:text-black">
-                            <span className="font-medium text-prim">{section.name}</span>
+                          <Disclosure.Button className="flex w-full items-center justify-between bg-prim-bg py-3 text-sm text-prim hover:text-white">
+                            <span className="font-medium text-prim hover:text-white">{section.name}</span>
                             <span className="ml-6 flex items-center">
                               {open ? (
                                 <MinusIcon className="h-5 w-5" aria-hidden="true" />
