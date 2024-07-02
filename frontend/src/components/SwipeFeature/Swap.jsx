@@ -1,27 +1,32 @@
 import React, { useState, useMemo, useRef } from 'react';
 import TinderCard from 'react-tinder-card';
-import darkLogo from './Swipe_assets/dark_logo.png';
 
 const db = [
   {
     name: 'Richard Hendricks',
-    url: darkLogo,
+    url: '/Swipe_assets/dark_logo.png',
   },
-  // Other items in db...
+  {
+    name: 'Erlich Bachman',
+    url: '/Swipe_assets/dark_logo.png',
+  },
+  {
+    name: 'Monica Hall',
+    url: '/Swipe_assets/dark_logo.png',
+  },
+  {
+    name: 'Jared Dunn',
+    url: '/Swipe_assets/dark_logo.png',
+  },
 ];
+
 
 function Swap() {
   const [currentIndex, setCurrentIndex] = useState(db.length - 1);
   const [swipedIndices, setSwipedIndices] = useState([]);
   const [lastDirection, setLastDirection] = useState();
   const currentIndexRef = useRef(currentIndex);
-  const childRefs = useMemo(
-    () =>
-      Array(db.length)
-        .fill(0)
-        .map(() => React.createRef()),
-    []
-  );
+  const childRefs = useMemo(() => Array(db.length).fill(0).map(() => React.createRef()), []);
 
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val);
@@ -49,21 +54,21 @@ function Swap() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-black">
-      <h1 className="text-2xl font-bold mb-4 text-prim">React Tinder Card</h1>
-      <div className="cardContainer w-90vw max-w-4xl h-96 flex items-center justify-center">
+      <h1 className="text-2xl font-bold mb-4 text-white">React Tinder Card</h1>
+      <div className="cardContainer w-90vw max-w-4xl h-96 flex items-center justify-center relative">
         {db.map((character, index) => (
           !swipedIndices.includes(index) && (
             <TinderCard
               ref={childRefs[index]}
-              className="swipe bg-blue-500 rounded-lg shadow-lg"
-              key={character.name}
+              className="swipe absolute w-full h-full"
+              key={character.name + index}
               onSwipe={(dir) => swiped(dir, character.name, index)}
             >
               <div
                 style={{ backgroundImage: `url(${character.url})` }}
-                className="card bg-cover bg-center w-full h-full rounded-lg"
+                className="card bg-cover bg-center w-full h-full rounded-lg shadow-lg"
               >
-                <h3 className="absolute bottom-0 mb-4 ml-4 text-prim">{character.name}</h3>
+                <h3 className="absolute bottom-0 mb-4 ml-4 text-white">{character.name}</h3>
               </div>
             </TinderCard>
           )
@@ -90,7 +95,7 @@ function Swap() {
         </button>
       </div>
       {lastDirection && (
-        <h2 className="infoText text-xl font-semibold text-prim">
+        <h2 className="infoText text-xl font-semibold text-white">
           You swiped {lastDirection}
         </h2>
       )}

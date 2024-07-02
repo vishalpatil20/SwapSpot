@@ -1,53 +1,179 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import SimplePeer from 'simple-peer';
+import io from 'socket.io-client';
+import VideoChatComponent from './VideoChatComponent'; // Adjust the path as per your project structure
 
-const SwapCallFeature = () => {
-    return (
-        <div className="bg-gray-100 p-8">
-            <h1 className="text-3xl font-bold mb-8 text-center text-prim">Welcome to SwapCall</h1>
-            <div className="flex justify-center space-x-4 mb-4">
-                <button className="bg-prim hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full flex items-center">
-                    <i className="fas fa-video mr-2"></i>
-                    <span>Open camera & microphone</span>
-                </button>
-                <button className="bg-prim hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full flex items-center" disabled>
-                    <i className="fas fa-plus-circle mr-2"></i>
-                    <span>Create room</span>
-                </button>
-                <button className="bg-prim hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full flex items-center" disabled>
-                    <i className="fas fa-sign-in-alt mr-2"></i>
-                    <span>Join room</span>
-                </button>
-                <button className="bg-red-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full flex items-center" disabled>
-                    <i className="fas fa-phone-slash mr-2"></i>
-                    <span>Hangup</span>
-                </button>
-            </div>
-            <div className="mb-4 text-center">
-                <span className="text-gray-600">Current Room: <span id="currentRoom">-</span></span>
-            </div>
-            <div id="videos" className="flex justify-center space-x-8 mb-8">
-                <video id="localVideo" className="w-1/2 rounded-lg shadow-xl" muted autoPlay playsInline></video>
-                <video id="remoteVideo" className="w-1/2 rounded-lg shadow-xl" autoPlay playsInline></video>
-            </div>
-            <div className="flex justify-center">
-                <div className="bg-white rounded-lg p-10 max-w-sm">
-                    <h2 className="text-xl font-bold mb-4">Join Room</h2>
-                    <div className="mb-4">
-                        <label htmlFor="room-id" className="block text-gray-700 font-bold mb-2">Room ID</label>
-                        <input type="text" id="room-id" className="border rounded-md px-3 py-2 w-full" />
-                    </div>
-                    <div className="flex justify-end">
-                        <button type="button" className="bg-prim hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" data-mdc-dialog-action="no">
-                            Cancel
-                        </button>
-                        <button id="confirmJoinBtn" type="button" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full ml-2" data-mdc-dialog-action="yes">
-                            Join
-                        </button>
-                    </div>
-                </div>
-            </div>
+const socket = io('http://localhost:3000');
+
+function SwapCallFeature() {
+  const [peers, setPeers] = useState([]);
+  const [roomId, setRoomId] = useState('');
+  const [inRoom, setInRoom] = useState(false);
+  const [localStream, setLocalStream] = useState(null);
+  const [remoteStreams, setRemoteStreams] = useState([]);
+  const [isInitiator, setIsInitiator] = useState(false);
+  const [videoDevices, setVideoDevices] = useState([]);
+  const [selectedDeviceId, setSelectedDeviceId] = useState('');
+
+  useEffect(() => {
+    socket.on('offer', ({ offer, from }) => {
+      console.log('Received offer:', offer);
+      if (!isInitiator) {
+        const peer = new SimplePeer({ initiator: false, trickle: false, stream: localStream });
+        peer.signal(offer);
+        peer.on('signal', answer => {
+          console.log('Sending answer:', answer);
+          socket.emit('answer', { room: roomId, answer, to: from });
+        });
+        peer.on('stream', stream => {
+          console.log('Received remote stream');
+          setRemoteStreams(prevStreams => [...prevStreams, stream]);
+        });
+        setPeers(prevPeers => [...prevPeers, { peer, id: from }]);
+      }
+    });
+
+    socket.on('answer', ({ answer, from }) => {
+      console.log('Received answer:', answer);
+      const peerObj = peers.find(p => p.id === from);
+      if (peerObj) {
+        peerObj.peer.signal(answer);
+      }
+    });
+
+    socket.on('candidate', ({ candidate, from }) => {
+      console.log('Received candidate:', candidate);
+      const peerObj = peers.find(p => p.id === from);
+      if (peerObj) {
+        peerObj.peer.signal(candidate);
+      }
+    });
+
+    socket.on('new-participant', ({ id }) => {
+      console.log('New participant joined:', id);
+      if (isInitiator) {
+        const peer = new SimplePeer({ initiator: true, trickle: false, stream: localStream });
+        peer.on('signal', data => {
+          if (data.type === 'offer') {
+            console.log('Sending offer:', data);
+            socket.emit('offer', { room: roomId, offer: data, to: id });
+          } else if (data.type === 'answer') {
+            console.log('Sending answer:', data);
+            socket.emit('answer', { room: roomId, answer: data, to: id });
+          } else {
+            console.log('Sending candidate:', data);
+            socket.emit('candidate', { room: roomId, candidate: data, to: id });
+          }
+        });
+        peer.on('stream', stream => {
+          console.log('Received remote stream');
+          setRemoteStreams(prevStreams => [...prevStreams, stream]);
+        });
+        setPeers(prevPeers => [...prevPeers, { peer, id }]);
+      }
+    });
+
+    return () => {
+      socket.off('offer');
+      socket.off('answer');
+      socket.off('candidate');
+      socket.off('new-participant');
+    };
+  }, [peers, isInitiator, roomId, localStream]);
+
+  useEffect(() => {
+    async function getVideoDevices() {
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const videoDevices = devices.filter(device => device.kind === 'videoinput');
+      setVideoDevices(videoDevices);
+    }
+    getVideoDevices();
+  }, []);
+
+  const handleDeviceChange = (event) => {
+    setSelectedDeviceId(event.target.value);
+  };
+
+  const createRoom = async () => {
+    const stream = await navigator.mediaDevices.getUserMedia({ 
+      video: { deviceId: selectedDeviceId ? { exact: selectedDeviceId } : undefined }, 
+      audio: true 
+    });
+    setLocalStream(stream);
+    socket.emit('create', { room: roomId });
+    setIsInitiator(true);
+    setInRoom(true);
+  };
+
+  const joinRoom = async () => {
+    const stream = await navigator.mediaDevices.getUserMedia({ 
+      video: { deviceId: selectedDeviceId ? { exact: selectedDeviceId } : undefined }, 
+      audio: true 
+    });
+    setLocalStream(stream);
+    socket.emit('join', { room: roomId });
+    setIsInitiator(false);
+    setInRoom(true);
+  };
+
+  const endCall = () => {
+    peers.forEach(({ peer }) => peer.destroy());
+    if (localStream) {
+      localStream.getTracks().forEach(track => track.stop());
+    }
+    socket.emit('leave', { room: roomId });
+    setPeers([]);
+    setLocalStream(null);
+    setRemoteStreams([]);
+    setInRoom(false);
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black">
+      <h1 className="text-8xl text-prim mb-8">Welcome to SwapCall</h1>
+      {!inRoom ? (
+        <div className="flex flex-col items-center">
+          <input
+            type="text"
+            value={roomId}
+            onChange={(e) => setRoomId(e.target.value)}
+            className="p-2 mb-4 bg-gray-800 text-white rounded"
+            placeholder="Enter Room ID"
+          />
+          <select onChange={handleDeviceChange} value={selectedDeviceId} className="p-2 mb-4 bg-gray-800 text-white rounded">
+            <option value="">Select Camera</option>
+            {videoDevices.map(device => (
+              <option key={device.deviceId} value={device.deviceId}>{device.label || `Camera ${device.deviceId}`}</option>
+            ))}
+          </select>
+          <div className="flex space-x-4">
+            <button
+              onClick={createRoom}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-800 transition"
+            >
+              Create Room
+            </button>
+            <button
+              onClick={joinRoom}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-800 transition"
+            >
+              Join Room
+            </button>
+          </div>
         </div>
-    );
-};
+      ) : (
+        <div className="flex flex-col items-center">
+          <VideoChatComponent localStream={localStream} remoteStreams={remoteStreams} />
+          <button
+            onClick={endCall}
+            className="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg shadow-lg hover:bg-red-800 transition"
+          >
+            End Call
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default SwapCallFeature;

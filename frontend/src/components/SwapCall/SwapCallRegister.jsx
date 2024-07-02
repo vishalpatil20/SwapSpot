@@ -6,6 +6,7 @@ const SwapCallRegister = () => {
   return (
     <div>
         <SwappCallPricing/>
+        
         <RegisterPage/>
     </div>
 

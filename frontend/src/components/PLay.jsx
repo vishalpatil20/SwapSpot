@@ -8,7 +8,7 @@ const PLay = () => {
       <h1>      this is a component that si to be removed while deplying</h1>
         <PayButton/>
         <Swap/>
-        <ChatApp/>
+        {/* <ChatApp/> */}
     </div>
   )
 }

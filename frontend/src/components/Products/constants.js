@@ -175,5 +175,9 @@ const products = [
       dateCreated: '2022-07-05',
     },
 ];
-
-export { sortOptions, subCategories, filters,products };
+const items = [
+  { id: 1, title: 'Back End Developer', department: 'Engineering', type: 'Full-time', location: 'Remote' },
+  { id: 2, title: 'Front End Developer', department: 'Engineering', type: 'Full-time', location: 'Remote' },
+  { id: 3, title: 'User Interface Designer', department: 'Design', type: 'Full-time', location: 'Remote' },
+]
+export { sortOptions, subCategories, filters,products, items };
