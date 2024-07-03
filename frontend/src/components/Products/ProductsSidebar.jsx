@@ -4,6 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import { sortOptions, subCategories, filters } from './constants.js'
 import ProductList from './ProductList.jsx'
+import ProductShoppingCart from './ProductShoppingCart.jsx'
 
 
 function classNames(...classes) {
@@ -119,9 +120,10 @@ export default function ProductsSidebar() {
         <main className=" max-w-8xl px-2 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-gray-800 pb-6 pt-4">
             <h1 className="text-2xl font-bold tracking-tight text-prim">Try SwapUp...!</h1>
-
+            <ProductShoppingCart/>
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
+                
                 <div>
                   <Menu.Button className="group inline-flex justify-center text-sm font-medium text-prim hover:text-white">
                     Sort

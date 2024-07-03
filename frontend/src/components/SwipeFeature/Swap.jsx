@@ -4,22 +4,21 @@ import TinderCard from 'react-tinder-card';
 const db = [
   {
     name: 'Richard Hendricks',
-    url: '/Swipe_assets/dark_logo.png',
+    url: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
   },
   {
     name: 'Erlich Bachman',
-    url: '/Swipe_assets/dark_logo.png',
+    url: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
   },
   {
     name: 'Monica Hall',
-    url: '/Swipe_assets/dark_logo.png',
+    url: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
   },
   {
     name: 'Jared Dunn',
-    url: '/Swipe_assets/dark_logo.png',
+    url: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
   },
 ];
-
 
 function Swap() {
   const [currentIndex, setCurrentIndex] = useState(db.length - 1);
@@ -64,10 +63,12 @@ function Swap() {
               key={character.name + index}
               onSwipe={(dir) => swiped(dir, character.name, index)}
             >
-              <div
-                style={{ backgroundImage: `url(${character.url})` }}
-                className="card bg-cover bg-center w-full h-full rounded-lg shadow-lg"
-              >
+              <div className="card w-full h-full rounded-lg shadow-lg">
+                <img
+                  src={character.url}
+                  alt={character.name}
+                  className="w-full h-full object-cover rounded-lg"
+                />
                 <h3 className="absolute bottom-0 mb-4 ml-4 text-white">{character.name}</h3>
               </div>
             </TinderCard>

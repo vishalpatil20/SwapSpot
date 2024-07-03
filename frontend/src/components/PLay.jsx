@@ -2,6 +2,9 @@ import React from 'react'
 import PayButton from './Baasic_utils/PayButton'
 import Swap from './SwipeFeature/Swap'
 import ChatApp from '../components/chatFeature/ChatApp'
+import ProductShoppingCart from '../components/Products/ProductShoppingCart'
+
+
 const PLay = () => {
   return (
     <div>
@@ -9,6 +12,7 @@ const PLay = () => {
         <PayButton/>
         <Swap/>
         {/* <ChatApp/> */}
+        <ProductShoppingCart/>
     </div>
   )
 }

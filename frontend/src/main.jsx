@@ -17,6 +17,7 @@ import SwapCallRegister from './components/SwapCall/SwapCallRegister.jsx';
 import SwapCallFeature from './components/SwapCall/SwapCallFeature.jsx';
 import Profile from './components/Profile/Profile.jsx';
 import Swap from './components/SwipeFeature/Swap.jsx';
+import CheckoutForm from './components/Products/CheckoutForm.jsx';
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,11 @@ const router = createBrowserRouter([
       {
         path: "/SwapSwipe",
         element: <Swap/>,
+        errorElement:<ErrorPage/>,
+      },
+      {
+        path: "/Checkout",
+        element: <CheckoutForm/>,
         errorElement:<ErrorPage/>,
       },
       
