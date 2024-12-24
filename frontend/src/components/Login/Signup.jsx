@@ -17,7 +17,9 @@ function Signup({ setSuccessMessage, setErrorMessage }) {
         password: signupPassword
       });
       
-      if (response.data && response.data.message) {
+      if (response.data && response.data.token) {
+        // Store the token in localStorage or context for further use
+        localStorage.setItem('authToken', response.data.token);
         setSuccessMessage(response.data.message);
         setErrorMessage("");
         console.log("Signup Successful");
@@ -25,13 +27,10 @@ function Signup({ setSuccessMessage, setErrorMessage }) {
       }
     } catch (error) {
       if (error.response) {
-        // Server responded with a status other than 2xx
         setErrorMessage(error.response.data.error || "Signup Failed. Please try again.");
       } else if (error.request) {
-        // Request was made but no response was received
         setErrorMessage("No response from server. Please check your connection.");
       } else {
-        // Something else went wrong
         setErrorMessage("An error occurred. Please try again.");
       }
       setSuccessMessage("");

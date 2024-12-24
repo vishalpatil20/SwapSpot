@@ -2,8 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
-const rateLimit = require('express-rate-limit'); // Import rate limiter
+const rateLimit = require('express-rate-limit');
 const userRoutes = require('./routes/userRoutes');
+const RoomController = require('./controllers/RoomController');
 
 const app = express();
 const server = http.createServer(app);
@@ -28,49 +29,21 @@ app.use('/users', authLimiter); // Apply rate limiting to '/users' route
 
 // Routes
 app.use('/users', userRoutes);
-app.use('/payments', userPayments);
 
 // Socket.IO Setup
-const rooms = {};
+RoomController.initialize(server); // Ensure the RoomController is initialized with server instance
+
 io.on('connection', (socket) => {
   console.log('A user connected:', socket.id);
 
   // Room Creation
-  socket.on('create', ({ room }) => {
-    if (rooms[room]) {
-      socket.emit('error', 'Room already exists');
-    } else {
-      rooms[room] = [socket.id];
-      socket.join(room);
-      socket.emit('created', room);
-      console.log(`Room created: ${room}`);
-    }
-  });
+  socket.on('create', ({ room }) => RoomController.createRoom(socket, room));
 
   // Room Joining
-  socket.on('join', ({ room }) => {
-    if (rooms[room]) {
-      rooms[room].push(socket.id);
-      socket.join(room);
-      socket.emit('joined', room);
-      console.log(`User joined room: ${room}`);
-      socket.to(room).emit('new-participant', { id: socket.id });
-    } else {
-      socket.emit('error', 'Room does not exist');
-    }
-  });
+  socket.on('join', ({ room }) => RoomController.joinRoom(socket, room));
 
   // Handle disconnect
-  socket.on('disconnect', () => {
-    console.log('A user disconnected:', socket.id);
-    for (const room in rooms) {
-      rooms[room] = rooms[room].filter((id) => id !== socket.id);
-      if (rooms[room].length === 0) {
-        delete rooms[room];
-        console.log(`Room deleted: ${room}`);
-      }
-    }
-  });
+  socket.on('disconnect', () => RoomController.leaveRoom(socket)); // Removed `room` parameter
 });
 
 // Start Server
