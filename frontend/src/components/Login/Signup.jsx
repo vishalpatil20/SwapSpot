@@ -2,32 +2,42 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 function Signup({ setSuccessMessage, setErrorMessage }) {
-    const [signupName, setSignupName] = useState("");
-    const [signupEmail, setSignupEmail] = useState("");
-    const [signupPassword, setSignupPassword] = useState("");
-    const navigate = useNavigate();
+  const [signupName, setSignupName] = useState("");
+  const [signupEmail, setSignupEmail] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
+  const navigate = useNavigate();
 
-  
-    const handleSignupSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        const response = await axios.post('http://localhost:3000/users/signup', {
-          name: signupName,
-          email: signupEmail,
-          password: signupPassword
-        });
+  const handleSignupSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3000/users/signup', {
+        name: signupName,
+        email: signupEmail,
+        password: signupPassword
+      });
+      
+      if (response.data && response.data.message) {
         setSuccessMessage(response.data.message);
         setErrorMessage("");
         console.log("Signup Successful");
-      navigate(`/`);
-      } catch (error) {
-        setErrorMessage("Signup Failed. Please try again.");
-        setSuccessMessage("");
-        console.error("Signup Failed:", error);
+        navigate('/');
       }
-    };
+    } catch (error) {
+      if (error.response) {
+        // Server responded with a status other than 2xx
+        setErrorMessage(error.response.data.error || "Signup Failed. Please try again.");
+      } else if (error.request) {
+        // Request was made but no response was received
+        setErrorMessage("No response from server. Please check your connection.");
+      } else {
+        // Something else went wrong
+        setErrorMessage("An error occurred. Please try again.");
+      }
+      setSuccessMessage("");
+      console.error("Signup Failed:", error);
+    }
+  };
 
   return (
     <form onSubmit={handleSignupSubmit} className="signup">
@@ -72,7 +82,6 @@ function Signup({ setSuccessMessage, setErrorMessage }) {
           required
           className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
         />
-        
       </div>
 
       <div className="mb-6">

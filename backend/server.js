@@ -1,10 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const http = require('http');
-
 const { Server } = require('socket.io');
+const rateLimit = require('express-rate-limit'); // Import rate limiter
 const userRoutes = require('./routes/userRoutes');
-const userPayments = require('./routes/userPayments');
 
 const app = express();
 const server = http.createServer(app);
@@ -15,14 +14,28 @@ const io = new Server(server, {
   },
 });
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-const rooms = {};
+// Rate Limiting Middleware
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: 'Too many requests, please try again later.',
+});
+app.use('/users', authLimiter); // Apply rate limiting to '/users' route
 
+// Routes
+app.use('/users', userRoutes);
+app.use('/payments', userPayments);
+
+// Socket.IO Setup
+const rooms = {};
 io.on('connection', (socket) => {
   console.log('A user connected:', socket.id);
 
+  // Room Creation
   socket.on('create', ({ room }) => {
     if (rooms[room]) {
       socket.emit('error', 'Room already exists');
@@ -34,6 +47,7 @@ io.on('connection', (socket) => {
     }
   });
 
+  // Room Joining
   socket.on('join', ({ room }) => {
     if (rooms[room]) {
       rooms[room].push(socket.id);
@@ -46,18 +60,7 @@ io.on('connection', (socket) => {
     }
   });
 
-  socket.on('offer', ({ room, offer, to }) => {
-    socket.to(to).emit('offer', { offer, from: socket.id });
-  });
-
-  socket.on('answer', ({ room, answer, to }) => {
-    socket.to(to).emit('answer', { answer, from: socket.id });
-  });
-
-  socket.on('candidate', ({ room, candidate, to }) => {
-    socket.to(to).emit('candidate', { candidate, from: socket.id });
-  });
-
+  // Handle disconnect
   socket.on('disconnect', () => {
     console.log('A user disconnected:', socket.id);
     for (const room in rooms) {
@@ -70,10 +73,7 @@ io.on('connection', (socket) => {
   });
 });
 
-app.use(express.json());
-app.use('/users', userRoutes);
-app.use('/payments', userPayments);
-
+// Start Server
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

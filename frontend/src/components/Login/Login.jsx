@@ -9,7 +9,7 @@ function Login({ setSuccessMessage, setErrorMessage }) {
   const [loginPassword, setLoginPassword] = useState("");
   const [showTestId, setShowTestId] = useState(false);
   const testEmail = "testuser@gmail.com";
-  const testPassword = "testpassword";
+  const testPassword = "testpassword123";
   const navigate = useNavigate();
 
 
