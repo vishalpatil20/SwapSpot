@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 const App = () => {
   return (
-    <h1 className="text-3xl font-bold underline">
-      
-    </h1>
-      )
-}
+    <div>
+      {/* Add content or leave empty */}
+    </div>
+  );
+};
 
-export default App
+export default App;

@@ -12,6 +12,7 @@ function Login({ setSuccessMessage, setErrorMessage }) {
   const testPassword = "testpassword123";
   const navigate = useNavigate();
 
+
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -28,16 +29,12 @@ function Login({ setSuccessMessage, setErrorMessage }) {
       setErrorMessage(""); // Reset error message if login succeeds
       console.log("Login Successful:", response.data);
     } catch (error) {
-      if (error.response) {
-        setErrorMessage(error.response.data.error || "Login Failed. Please try again.");
-      } else {
-        setErrorMessage("An error occurred. Please try again.");
-      }
+      setErrorMessage("Login Failed. Please try again.");
       console.error("Login Failed:", error);
     }
   };
 
-  const handleToggleShowPassword = () => {
+  const handleToggleTestId = () => {
     setShowTestId(!showTestId);
   };
 
@@ -77,7 +74,7 @@ function Login({ setSuccessMessage, setErrorMessage }) {
             className="mt-1 p-2 w-full rounded-md border border-gray-400 focus:outline-none focus:border-blue-500"
           />
           <span
-            onClick={handleToggleShowPassword}
+            onClick={handleToggleTestId}
             className="absolute top-0 right-0 m-4 cursor-pointer text-[#004AAD] font-bold"
           >
             <BiSolidShow />

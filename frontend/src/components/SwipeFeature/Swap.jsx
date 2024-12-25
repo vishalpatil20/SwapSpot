@@ -3,20 +3,20 @@ import TinderCard from 'react-tinder-card';
 
 const db = [
   {
-    name: 'Richard Hendricks',
-    url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
+    productName: 'Wireless Earbuds',
+    imageUrl: 'https://cdn.pixabay.com/photo/2020/12/07/15/40/headphones-5812344_1280.jpg',
   },
   {
-    name: 'Erlich Bachman',
-    url: 'https://images.unsplash.com/photo-1502767089025-6572583495b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
+    productName: 'Smart Watch',
+    imageUrl: 'https://cdn.pixabay.com/photo/2016/11/22/15/57/watch-1853900_1280.jpg',
   },
   {
-    name: 'Monica Hall',
-    url: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
+    productName: 'Laptop',
+    imageUrl: 'https://cdn.pixabay.com/photo/2016/11/18/11/16/laptop-1839405_1280.jpg',
   },
   {
-    name: 'Jared Dunn',
-    url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
+    productName: 'Gaming Console',
+    imageUrl: 'https://cdn.pixabay.com/photo/2017/08/14/12/27/console-2640166_1280.jpg',
   },
 ];
 
@@ -52,9 +52,9 @@ function Swap() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-800 via-purple-700 to-black">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-prim via-prim to-black">
       <h1 className="text-4xl font-extrabold mb-6 text-white tracking-wide">
-        Swipe Your Match
+        Swipe Your Products
       </h1>
       <div className="cardContainer w-11/12 max-w-3xl h-96 flex items-center justify-center relative">
         {db.map((character, index) => (
@@ -62,17 +62,17 @@ function Swap() {
             <TinderCard
               ref={childRefs[index]}
               className="swipe absolute w-full h-full"
-              key={character.name + index}
-              onSwipe={(dir) => swiped(dir, character.name, index)}
+              key={character.productName + index}
+              onSwipe={(dir) => swiped(dir, character.productName, index)}
             >
               <div className="card relative w-full h-full rounded-lg shadow-xl overflow-hidden">
                 <img
-                  src={character.url}
-                  alt={character.name}
+                  src={character.imageUrl}
+                  alt={character.productName}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-0 bg-gradient-to-t from-black to-transparent w-full py-4 px-6">
-                  <h3 className="text-xl font-semibold text-white">{character.name}</h3>
+                  <h3 className="text-xl font-semibold text-white">{character.productName}</h3>
                 </div>
               </div>
             </TinderCard>
