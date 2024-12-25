@@ -14,5 +14,13 @@ model User {
   password String
 }
 
+model Message {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  roomId    String
+  sender    String
+  message   String
+  timestamp DateTime @default(now())
+}
+
 
 

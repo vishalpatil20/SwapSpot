@@ -47,17 +47,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/products",
-        element: <ProductsPage />,
+        element: <ProtectedRoute component={ProductsPage} />,
         errorElement: <ErrorPage />,
       },
       {
         path: "/Swapcall",
-        element: <SwapCallRegister />,
+        element: <ProtectedRoute component={SwapCallRegister} />,
         errorElement: <ErrorPage />,
       },
       {
         path: "/SwapVideocalling",
-        element: <SwapCallFeature />,
+        element: <ProtectedRoute component={SwapCallFeature} />,
         errorElement: <ErrorPage />,
       },
       {

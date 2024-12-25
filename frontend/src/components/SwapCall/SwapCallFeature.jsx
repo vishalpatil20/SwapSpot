@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import SimplePeer from 'simple-peer';
 import io from 'socket.io-client';
-import VideoChatComponent from './VideoChatComponent'; // Adjust the path as per your project structure
+import VideoChatComponent from './VideoChatComponent';
+import ChatComponent from './ChatComponent';
 
 const socket = io('http://localhost:3000');
 
@@ -16,83 +17,24 @@ function SwapCallFeature() {
   const [selectedDeviceId, setSelectedDeviceId] = useState('');
 
   useEffect(() => {
-    socket.on('offer', ({ offer, from }) => {
-      console.log('Received offer:', offer);
-      if (!isInitiator) {
-        const peer = new SimplePeer({ initiator: false, trickle: false, stream: localStream });
-        peer.signal(offer);
-        peer.on('signal', answer => {
-          console.log('Sending answer:', answer);
-          socket.emit('answer', { room: roomId, answer, to: from });
-        });
-        peer.on('stream', stream => {
-          console.log('Received remote stream');
-          setRemoteStreams(prevStreams => [...prevStreams, stream]);
-        });
-        setPeers(prevPeers => [...prevPeers, { peer, id: from }]);
-      }
-    });
+    navigator.mediaDevices.enumerateDevices()
+      .then(devices => setVideoDevices(devices.filter(device => device.kind === 'videoinput')))
+      .catch(err => console.error('Error accessing devices:', err));
 
-    socket.on('answer', ({ answer, from }) => {
-      console.log('Received answer:', answer);
-      const peerObj = peers.find(p => p.id === from);
-      if (peerObj) {
-        peerObj.peer.signal(answer);
-      }
-    });
-
-    socket.on('candidate', ({ candidate, from }) => {
-      console.log('Received candidate:', candidate);
-      const peerObj = peers.find(p => p.id === from);
-      if (peerObj) {
-        peerObj.peer.signal(candidate);
-      }
-    });
-
-    socket.on('new-participant', ({ id }) => {
-      console.log('New participant joined:', id);
-      if (isInitiator) {
-        const peer = new SimplePeer({ initiator: true, trickle: false, stream: localStream });
-        peer.on('signal', data => {
-          if (data.type === 'offer') {
-            console.log('Sending offer:', data);
-            socket.emit('offer', { room: roomId, offer: data, to: id });
-          } else if (data.type === 'answer') {
-            console.log('Sending answer:', data);
-            socket.emit('answer', { room: roomId, answer: data, to: id });
-          } else {
-            console.log('Sending candidate:', data);
-            socket.emit('candidate', { room: roomId, candidate: data, to: id });
-          }
-        });
-        peer.on('stream', stream => {
-          console.log('Received remote stream');
-          setRemoteStreams(prevStreams => [...prevStreams, stream]);
-        });
-        setPeers(prevPeers => [...prevPeers, { peer, id }]);
-      }
-    });
+    socket.on('offer', ({ offer, from, room }) => handleOffer(offer, from, room));
+    socket.on('answer', ({ answer, from, room }) => handleAnswer(answer, from, room));
+    socket.on('candidate', ({ candidate, from, room }) => handleCandidate(candidate, from, room));
+    socket.on('new-participant', ({ id, room }) => handleNewParticipant(id, room));
+    socket.on('leave', ({ room }) => handleLeave(room));
 
     return () => {
       socket.off('offer');
       socket.off('answer');
       socket.off('candidate');
       socket.off('new-participant');
+      socket.off('leave');
     };
-  }, [peers, isInitiator, roomId, localStream]);
-
-  useEffect(() => {
-    async function getVideoDevices() {
-      const devices = await navigator.mediaDevices.enumerateDevices();
-      const videoDevices = devices.filter(device => device.kind === 'videoinput');
-      setVideoDevices(videoDevices);
-    }
-    getVideoDevices();
   }, []);
-
-  const handleDeviceChange = (event) => {
-    setSelectedDeviceId(event.target.value);
-  };
 
   const createRoom = async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ 
@@ -116,6 +58,47 @@ function SwapCallFeature() {
     setInRoom(true);
   };
 
+  const handleOffer = async (offer, from, room) => {
+    const peer = createPeer(from, room);
+    await peer.signal(offer);
+    setPeers(peers => [...peers, { peer, id: from }]);
+  };
+
+  const handleAnswer = (answer, from, room) => {
+    const peer = peers.find(p => p.id === from)?.peer;
+    if (peer) {
+      peer.signal(answer);
+    }
+  };
+
+  const handleCandidate = (candidate, from, room) => {
+    const peer = peers.find(p => p.id === from)?.peer;
+    if (peer) {
+      peer.signal(candidate);
+    }
+  };
+
+  const handleNewParticipant = (id, room) => {
+    const newPeer = createPeer(id, room);
+    setPeers(peers => [...peers, { peer: newPeer, id }]);
+  };
+
+  const handleLeave = (room) => {
+    peers.forEach(({ peer }) => peer.destroy());
+    setPeers([]);
+    setLocalStream(null);
+    setRemoteStreams([]);
+    setInRoom(false);
+    socket.emit('leave', { room });
+  };
+
+  const createPeer = (id, room) => {
+    const peer = new SimplePeer({ initiator: isInitiator, stream: localStream });
+    peer.on('signal', data => socket.emit('signal', { signal: data, to: id, room }));
+    peer.on('stream', stream => setRemoteStreams(streams => [...streams, stream]));
+    return peer;
+  };
+
   const endCall = () => {
     peers.forEach(({ peer }) => peer.destroy());
     if (localStream) {
@@ -129,48 +112,46 @@ function SwapCallFeature() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black">
-      <h1 className="text-8xl text-prim mb-8">Welcome to SwapCall</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
+      <h1 className="text-6xl text-white mb-8">Welcome to SwapCall</h1>
       {!inRoom ? (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center w-full max-w-lg px-6 py-8 bg-gray-800 rounded-lg shadow-lg">
           <input
             type="text"
             value={roomId}
             onChange={(e) => setRoomId(e.target.value)}
-            className="p-2 mb-4 bg-gray-800 text-white rounded"
+            className="p-2 mb-4 bg-gray-700 text-white rounded"
             placeholder="Enter Room ID"
           />
-          <select onChange={handleDeviceChange} value={selectedDeviceId} className="p-2 mb-4 bg-gray-800 text-white rounded">
+          <select onChange={(e) => setSelectedDeviceId(e.target.value)} value={selectedDeviceId} className="p-2 mb-4 bg-gray-700 text-white rounded">
             <option value="">Select Camera</option>
-            {videoDevices.map(device => (
+            {videoDevices.map((device) => (
               <option key={device.deviceId} value={device.deviceId}>{device.label || `Camera ${device.deviceId}`}</option>
             ))}
           </select>
           <div className="flex space-x-4">
             <button
               onClick={createRoom}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-800 transition"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition"
             >
               Create Room
             </button>
             <button
               onClick={joinRoom}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-800 transition"
+              className="px-6 py-2 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition"
             >
               Join Room
             </button>
           </div>
         </div>
       ) : (
-        <div className="flex flex-col items-center">
+        <>
           <VideoChatComponent localStream={localStream} remoteStreams={remoteStreams} />
-          <button
-            onClick={endCall}
-            className="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg shadow-lg hover:bg-red-800 transition"
-          >
+          <button onClick={endCall} className="px-6 py-2 bg-red-600 text-white rounded-lg shadow-lg hover:bg-red-700 transition mt-4">
             End Call
           </button>
-        </div>
+          <ChatComponent roomId={roomId} socket={socket} />
+        </>
       )}
     </div>
   );

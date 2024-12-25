@@ -6,7 +6,6 @@ const userController = require('../controllers/userController');
 router.post('/signup', userController.signup);
 router.post('/login', userController.login);
 
-// Protected route
 router.get('/profile', verifyToken, (req, res) => {
   res.status(200).json({ message: `Welcome user with ID ${req.userId}` });
 });
