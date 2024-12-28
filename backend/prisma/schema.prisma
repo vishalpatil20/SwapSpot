@@ -21,6 +21,26 @@ model Message {
   message   String
   timestamp DateTime @default(now())
 }
-
+model Form {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  username     String       @unique
+  firstName    String?
+  lastName     String?
+  email        String       @unique
+  country      String?
+  streetAddress String?
+  city         String?
+  region       String?
+  postalCode   String?
+  createdAt    DateTime     @default(now())
+}
+model Payment {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  userId         Int
+  paymentIntentId String   @unique
+  amount         Float
+  status         String
+  createdAt      DateTime @default(now())
+}
 
 

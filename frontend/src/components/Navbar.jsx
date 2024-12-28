@@ -14,7 +14,7 @@ const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'About us', href: '/Aboutme', current: false },
   { name: 'SwapProducts', href: '/products', current: false },
-  { name: 'Play', href: '/PLAY', current: false },
+  // { name: 'Play', href: '/PLAY', current: false },
   
   // { name: 'Login/Sign-up', href: {<Action_menu/>}, current: false },
 ];

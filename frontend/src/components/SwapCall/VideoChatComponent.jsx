@@ -3,22 +3,21 @@ import React, { useRef, useEffect } from 'react';
 const VideoChatComponent = ({ localStream, remoteStreams }) => {
   const localVideoRef = useRef(null);
 
-  // Ensure that the local video stream is set when `localStream` changes
   useEffect(() => {
-    if (localStream && localVideoRef.current) {
+    if (localStream) {
       localVideoRef.current.srcObject = localStream;
     }
   }, [localStream]);
 
   return (
     <div className="flex space-x-4">
-      {/* Local Video Stream */}
       <div className="relative w-1/2">
         <video ref={localVideoRef} autoPlay muted className="w-full h-full object-cover rounded-lg shadow-lg" />
-        <div className="absolute bottom-2 right-2 text-white">You</div>
+        <div className="absolute bottom-2 left-2 text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded">
+          You
+        </div>
       </div>
-
-      {/* Remote Video Streams */}
+      
       {remoteStreams.map((stream, index) => (
         <div key={index} className="relative w-1/2">
           <video
@@ -30,7 +29,9 @@ const VideoChatComponent = ({ localStream, remoteStreams }) => {
             autoPlay
             className="w-full h-full object-cover rounded-lg shadow-lg"
           />
-          <div className="absolute bottom-2 right-2 text-white">Remote {index + 1}</div>
+          <div className="absolute bottom-2 left-2 text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded">
+            Remote {index + 1}
+          </div>
         </div>
       ))}
     </div>
