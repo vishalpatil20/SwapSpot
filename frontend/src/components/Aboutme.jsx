@@ -1,4 +1,3 @@
-
 import product1 from '../assets/product1.png';
 import product2 from '../assets/product1.png';
 import product3 from '../assets/product1.png';
@@ -20,10 +19,13 @@ const Aboutme = () => {
               <p className="mt-4 text-xl text-gray-500">
                 Welcome to Swapspot, your go-to destination for all things trading! Whether you're looking to swap, sell, or simply find your next favorite item, Swapspot is here to make it happen.
               </p>
+              <p className="mt-4 text-lg text-gray-400">
+                Discover a new way to shop and trade with our user-friendly platform. From trendy outfits to vintage collectibles, our marketplace is packed with opportunities to explore, connect, and exchange. Join a community that values sustainability and creativity in commerce.
+              </p>
             </div>
             <div>
               <div className="mt-10">
-                {/* Decorative image grid */}
+                /* Decorative image grid */
                 <div
                   aria-hidden="true"
                   className="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl"
@@ -34,14 +36,14 @@ const Aboutme = () => {
                         <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
                           <img
                             src={product1}
-                            alt="Product 1"
+                            alt="Trendy Outfit"
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
                             src={product2}
-                            alt="Product 2"
+                            alt="Vintage Collectible"
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
@@ -50,21 +52,21 @@ const Aboutme = () => {
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
                             src={product3}
-                            alt="Product 3"
+                            alt="Handmade Craft"
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
                             src={product4}
-                            alt="Product 4"
+                            alt="Eco-friendly Product"
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
                             src={product5}
-                            alt="Product 5"
+                            alt="Unique Accessory"
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
@@ -73,14 +75,14 @@ const Aboutme = () => {
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
                             src={product6}
-                            alt="Product 6"
+                            alt="Art Piece"
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
                             src={product7}
-                            alt="Product 7"
+                            alt="Gadget"
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
@@ -95,12 +97,105 @@ const Aboutme = () => {
                 >
                   Shop Collection
                 </a>
-              </div>
-            </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                <div className="bg-gray-900 py-16 px-4 sm:px-6 lg:px-8 h-screen flex items-center justify-center">
+                  <div className="max-w-3xl text-center">
+                    <h2 className="text-3xl font-bold text-prim sm:text-4xl">
+                      Why Choose Swapspot?
+                    </h2>
+                    <p className="mt-4 text-lg text-gray-400">
+                      Swapspot offers a unique and sustainable way to shop and trade. Our platform is designed to connect you with a community that values creativity and eco-friendliness. Whether you're looking for trendy outfits, vintage collectibles, or handmade crafts, Swapspot has something for everyone. Join us and experience a new way of commerce that prioritizes both people and the planet.
+                    </p>
+                  </div>
+                </div>
+
+      <div className="bg-gray-800 py-16 px-4 sm:px-6 lg:px-8 h-screen">
+        <div className="max-w-7xl mx-auto">
+          <h3 className="text-2xl font-semibold text-prim sm:text-3xl">
+            What Our Users Say
+          </h3>
+          <div className="mt-8 grid grid-cols-1 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
+            <blockquote className="bg-gray-700 p-6 rounded-lg">
+              <p className="text-lg text-gray-300">
+                "Swapspot made it so easy to find a new home for my unused items. The process is seamless, and the community is fantastic!"
+              </p>
+              <footer className="mt-4">
+                <cite className="text-sm text-gray-400">— Alex Johnson</cite>
+              </footer>
+            </blockquote>
+            <blockquote className="bg-gray-700 p-6 rounded-lg">
+              <p className="text-lg text-gray-300">
+                "I love how intuitive the platform is. I've discovered some unique items I never thought I’d find!"
+              </p>
+              <footer className="mt-4">
+                <cite className="text-sm text-gray-400">— Priya Sharma</cite>
+              </footer>
+            </blockquote>
+            <blockquote className="bg-gray-700 p-6 rounded-lg">
+              <p className="text-lg text-gray-300">
+                "The secure payment system gives me peace of mind. Swapspot is a game-changer for trading online."
+              </p>
+              <footer className="mt-4">
+                <cite className="text-sm text-gray-400">— John Doe</cite>
+              </footer>
+            </blockquote>
+            <blockquote className="bg-gray-700 p-6 rounded-lg">
+              <p className="text-lg text-gray-300">
+                "Swapspot made it so easy to find a new home for my unused items. The process is seamless, and the community is fantastic!"
+              </p>
+              <footer className="mt-4">
+                <cite className="text-sm text-gray-400">— Alex Johnson</cite>
+              </footer>
+            </blockquote>
+            <blockquote className="bg-gray-700 p-6 rounded-lg">
+              <p className="text-lg text-gray-300">
+                "I love how intuitive the platform is. I've discovered some unique items I never thought I’d find!"
+              </p>
+              <footer className="mt-4">
+                <cite className="text-sm text-gray-400">— Priya Sharma</cite>
+              </footer>
+            </blockquote>
+            <blockquote className="bg-gray-700 p-6 rounded-lg">
+              <p className="text-lg text-gray-300">
+                "The secure payment system gives me peace of mind. Swapspot is a game-changer for trading online."
+              </p>
+              <footer className="mt-4">
+                <cite className="text-sm text-gray-400">— John Doe</cite>
+              </footer>
+            </blockquote>
+            <blockquote className="bg-gray-700 p-6 rounded-lg">
+              <p className="text-lg text-gray-300">
+                "Swapspot made it so easy to find a new home for my unused items. The process is seamless, and the community is fantastic!"
+              </p>
+              <footer className="mt-4">
+                <cite className="text-sm text-gray-400">— Alex Johnson</cite>
+              </footer>
+            </blockquote>
+            <blockquote className="bg-gray-700 p-6 rounded-lg">
+              <p className="text-lg text-gray-300">
+                "I love how intuitive the platform is. I've discovered some unique items I never thought I’d find!"
+              </p>
+              <footer className="mt-4">
+                <cite className="text-sm text-gray-400">— Priya Sharma</cite>
+              </footer>
+            </blockquote>
+            <blockquote className="bg-gray-700 p-6 rounded-lg">
+              <p className="text-lg text-gray-300">
+                "The secure payment system gives me peace of mind. Swapspot is a game-changer for trading online."
+              </p>
+              <footer className="mt-4">
+                <cite className="text-sm text-gray-400">— John Doe</cite>
+              </footer>
+            </blockquote>
+            
           </div>
         </div>
       </div>
-      {/* <Swap/> */}
     </div>
   );
 };
