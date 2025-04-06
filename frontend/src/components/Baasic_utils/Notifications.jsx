@@ -7,10 +7,10 @@ const Notification = () => {
 
   const handleClick = async () => {
     try {
-      const authToken = localStorage.getItem('authToken'); // Retrieve authToken from local storage
+      const authToken = localStorage.getItem('authToken'); 
       const response = await axios.get('http://localhost:3000/notifications/user', {
         headers: {
-          Authorization: `Bearer ${authToken}`, // Use authToken in the Authorization header
+          Authorization: `Bearer ${authToken}`, 
         },
       });
 
